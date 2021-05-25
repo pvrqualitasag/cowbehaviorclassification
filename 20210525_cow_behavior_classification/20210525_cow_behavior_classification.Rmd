@@ -1,0 +1,39 @@
+---
+title: "Classification of Cow Behavior"
+author: "Peter von Rohr"
+date: "`r Sys.Date()`"
+output: beamer_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+
+## Approaches
+
+- Descriptive
+- Time Series
+- Longitudinal Data
+- Support Vector Machine (SVM)
+
+## Descriptive
+
+- Compare average behavior times
+- Make two classes: 
+    1. days with reported incidence
+    2. days without reported incidence
+    
+
+## Boxplot
+
+
+## Time Series
+
+
+## Longitudinal Data
+
+
+## Support Vector Machine (SVM)
