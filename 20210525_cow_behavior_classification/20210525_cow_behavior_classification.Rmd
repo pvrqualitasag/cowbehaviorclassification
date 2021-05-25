@@ -30,10 +30,29 @@ knitr::opts_chunk$set(echo = FALSE)
 ## Boxplot
 
 
-## Time Series
+## Time Series (TS)
 
+- __Definition__: Single set of data whose observations are ordered in time. 
+- Observations on the same quantity $\rightarrow$ correlated and not independent
+- Examples ...
+
+
+## TS Models
+
+- AR: Auto-regressive
+- MA: Moving average
+- ARMA: combine AR and MA
+- ARIMA: allows for non-stationary trends
 
 ## Longitudinal Data
 
 
 ## Support Vector Machine (SVM)
+
+
+## References
+
+- https://bookdown.org/gary_a_napier/time_series_lecture_notes/
+- https://bookdown.org/JakeEsprabens/431-Time-Series/
+- https://bookdown.org/rushad_16/TSA_Lectures_book/
+
