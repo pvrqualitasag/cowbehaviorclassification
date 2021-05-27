@@ -50,9 +50,19 @@ knitr::opts_chunk$set(echo = FALSE)
 ## Support Vector Machine (SVM)
 
 
-## References
+# References
 
+## References Time Series
 - https://bookdown.org/gary_a_napier/time_series_lecture_notes/
 - https://bookdown.org/JakeEsprabens/431-Time-Series/
 - https://bookdown.org/rushad_16/TSA_Lectures_book/
 
+
+## References Classification
+- https://stats.stackexchange.com/questions/60939/classification-in-time-series-svms-neural-networks-random-forests-or-non-para
+- https://rpubs.com/JoanViana/timeseriesclassification
+- https://journal.r-project.org/archive/2018/RJ-2018-005/RJ-2018-005.pdf
+
+
+## References Imputation
+- https://stackoverflow.com/questions/49081801/time-series-forecasting-using-support-vector-machine-svm-in-r
