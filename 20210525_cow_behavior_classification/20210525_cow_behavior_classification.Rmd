@@ -49,6 +49,8 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Support Vector Machine (SVM)
 
+- Classification of different events (generic event?)
+- Imputation of missing behavior observations using svm regression
 
 # References
 
