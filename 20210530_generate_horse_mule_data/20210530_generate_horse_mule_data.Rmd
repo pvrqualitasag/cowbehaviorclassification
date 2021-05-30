@@ -1,0 +1,61 @@
+---
+title: "Generate Data for Horse-Mule Classification"
+output: html_notebook
+---
+
+# Disclaimer
+A dataset is to be generated to be able to replicate the SVM classification shown in https://youtu.be/QkAmOb1AMrY
+
+
+# Data
+The data consists of the height and the weight of mules and horses. These data are simulated as random numbers based on some assumed means and standard deviation.
+
+```{r}
+# mule
+n_nr_mule <- 10
+n_mean_weight_mule <- 450
+n_sd_weight_mule <- 15
+n_mean_height_mule <- 152
+n_sd_height_mule <- 9
+# horse
+n_nr_horse <- 10
+n_mean_weight_horse <- 600
+n_sd_weight_horse <- 31
+n_mean_height_horse <- 171
+n_sd_height_horse <- 11
+```
+
+Data are generated using the `rnorm()` function. 
+
+```{r}
+set.seed(6574)
+tbl_mule_horse <- tibble::tibble(Animal = 1:(n_nr_mule + n_nr_horse),
+                                 Weight = c(rnorm(n_nr_mule, mean = n_mean_weight_mule, sd = n_sd_weight_mule),
+                                            rnorm(n_nr_horse, mean = n_mean_weight_horse, sd = n_sd_weight_horse)),
+                                 Height = c(rnorm(n_nr_mule, mean = n_mean_height_mule, sd = n_sd_height_mule),
+                                            rnorm(n_nr_horse, mean = n_mean_height_horse, sd = n_sd_height_horse)),
+                                 Kind = c(rep("mule", n_nr_mule), rep("horse", n_nr_horse)))
+tbl_mule_horse$Weight <- round(tbl_mule_horse$Weight, digits = 0)
+tbl_mule_horse$Height <- round(tbl_mule_horse$Height, digits = 0)
+tbl_mule_horse$Kind <- as.factor(tbl_mule_horse$Kind)
+tbl_mule_horse
+```
+
+Write the data to a file
+
+```{r}
+readr::write_csv(tbl_mule_horse, file = "animal_data.csv")
+```
+
+
+# Plots
+
+```{r}
+library(ggplot2)
+ggplot(data = tbl_mule_horse, aes(Weight, Height, color = Kind)) + 
+  geom_point()
+```
+
+
+
+

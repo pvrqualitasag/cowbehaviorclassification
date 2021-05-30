@@ -7,9 +7,30 @@ output: beamer_presentation
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+# rmdhelp::show_knit_hook_call()
+knitr::knit_hooks$set(hook_convert_odg = rmdhelp::hook_convert_odg)
 ```
 
 ## Introduction
+
+- Presentation on first ideas for second level classification
+- Simple example data on classification of horses and mules
+
+```{r show-animal-data, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg", out.width="10cm"}
+#rmdhelp::use_odg_graphic(ps_path = "odg/show-animal-data.odg")
+knitr::include_graphics(path = "odg/show-animal-data.png")
+```
+
+
+## Plot
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, out.width="10cm"}
+s_data_path <- file.path(here::here(), "inst", "extdata", "animal_data.csv")
+tbl_animal_data <- readr::read_csv(file = s_data_path)
+require(ggplot2)
+ggplot(data = tbl_animal_data, aes(Weight, Height, color = Kind)) + 
+  geom_point()
+```
 
 
 ## Approaches
@@ -18,6 +39,7 @@ knitr::opts_chunk$set(echo = FALSE)
 - Time Series
 - Longitudinal Data
 - Support Vector Machine (SVM)
+
 
 ## Descriptive
 
@@ -28,6 +50,32 @@ knitr::opts_chunk$set(echo = FALSE)
     
 
 ## Boxplot
+
+```{r, echo=FALSE, fig.show='hold', out.width="50%"}
+ggplot(data = tbl_animal_data, aes(Kind, Weight)) + 
+  geom_boxplot()
+ggplot(data = tbl_animal_data, aes(Kind, Height)) + 
+  geom_boxplot()
+```
+
+
+
+## Pairs Plot
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE, out.width="10cm"}
+require(dplyr)
+tbl_pairs_data <- tbl_animal_data %>% select(Height, Weight)
+pairs(tbl_pairs_data)
+```
+
+
+
+## Correlation
+
+```{r, echo=TRUE}
+cor(tbl_animal_data$Height, tbl_animal_data$Weight)
+```
+
 
 
 ## Time Series (TS)
@@ -44,13 +92,34 @@ knitr::opts_chunk$set(echo = FALSE)
 - ARMA: combine AR and MA
 - ARIMA: allows for non-stationary trends
 
+$\rightarrow$ Determine lag or window size
+
+$\rightarrow$ Use for prediction of missing data
+
+
 ## Longitudinal Data
+
+- Traits measured at various times during the life of an animal
+- No fixed interval (birth, weaning, slaughter, ...)
+- Every observation is a different trait
+- Data analysis via higher-order polynomials
 
 
 ## Support Vector Machine (SVM)
 
 - Classification of different events (generic event?)
 - Imputation of missing behavior observations using svm regression
+
+
+## Example
+
+- See the notebook
+
+```{r example-svm, echo=FALSE, hook_convert_odg=TRUE, fig_path="odg", out.width="10cm"}
+#rmdhelp::use_odg_graphic(ps_path = "odg/example-svm.odg")
+knitr::include_graphics(path = "odg/example-svm.png")
+```
+
 
 # References
 
@@ -64,7 +133,8 @@ knitr::opts_chunk$set(echo = FALSE)
 - https://stats.stackexchange.com/questions/60939/classification-in-time-series-svms-neural-networks-random-forests-or-non-para
 - https://rpubs.com/JoanViana/timeseriesclassification
 - https://journal.r-project.org/archive/2018/RJ-2018-005/RJ-2018-005.pdf
+- https://www.youtube.com/watch?v=QkAmOb1AMrY
 
 
 ## References Imputation
-- https://stackoverflow.com/questions/49081801/time-series-forecasting-using-support-vector-machine-svm-in-r
+- https://stackoverflow.com/questions/49081801/time-series-forecasting-using-support-vector-machine-svm-in-r  
