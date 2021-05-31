@@ -1,8 +1,10 @@
 ---
 title: "Classification of Cow Behavior"
-author: "Peter von Rohr"
+author: "Peter von Rohr and Jessica Gearing"
 date: "`r Sys.Date()`"
-output: beamer_presentation
+output:
+  beamer_presentation: default
+  ioslides_presentation: default
 ---
 
 ```{r setup, include=FALSE}
@@ -51,7 +53,7 @@ ggplot(data = tbl_animal_data, aes(Weight, Height, color = Kind)) +
 
 ## Boxplot
 
-```{r, echo=FALSE, fig.show='hold', out.width="50%"}
+```{r, echo=FALSE, fig.show='hold', out.width="45%"}
 ggplot(data = tbl_animal_data, aes(Kind, Weight)) + 
   geom_boxplot()
 ggplot(data = tbl_animal_data, aes(Kind, Height)) + 
