@@ -3,11 +3,16 @@ title: "Support Vector Machine (SVM) Classification"
 output: html_notebook
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, results = 'markup')
+```
+
 ## Data
 
 ```{r}
 s_data_path <- file.path(here::here(), "inst", "extdata", "animal_data.csv")
 tbl_hm_data <- readr::read_csv(file = s_data_path)
+tbl_hm_data$Kind <- as.factor(tbl_hm_data$Kind)
 tbl_hm_data
 ```
 
@@ -18,5 +23,30 @@ tbl_hm_data
 pkg <- "e1071"
 if (!is.element(pkg, installed.packages())) install.packages(pkg)
 require(e1071)
+
+svm.model <- svm(Kind ~ Height + Weight, 
+                 data = tbl_hm_data,
+                 type = "C-classification",
+                 kernel = "linear",
+                 scale = FALSE)
+summary(svm.model)
+```
+
+Show support vectors in the data plot
+
+```{r, fig.show='hold'}
+plot(tbl_hm_data[, c("Height", "Weight")], col = (3)/2, pch=19)
+points(tbl_hm_data[svm.model$index, c("Height", "Weight")], col = "orange", cex = 2)
+```
+
+Parameters of the hyperplane
+
+```{r, fig.show='hold'}
+w <- t(svm.model$coefs) %*% svm.model$SV
+b <- svm.model$rho
+# in this 2D case the hyperplane corresponds to the line: w[1,1]*x1 + w[1,2]*x2 + b = 0
+plot(tbl_hm_data[, c("Height", "Weight")], col = (3)/2, pch=19)
+points(tbl_hm_data[svm.model$index, c("Height", "Weight")], col = "orange", cex = 2)
+abline(a = b/w[1,2], b = -w[1,1]/w[1,2], col = "blue", lty = 3)
 ```
 
