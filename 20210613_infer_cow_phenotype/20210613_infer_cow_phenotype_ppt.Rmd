@@ -1,8 +1,10 @@
 ---
 title: "Inferring Cow Phenotypes Based on Sensor Data"
 author: "Peter von Rohr"
-date: "`r Sys.Date()`"
-output: powerpoint_presentation
+date: '`r Sys.Date()`'
+output:
+  powerpoint_presentation: default
+  beamer_presentation: default
 ---
 
 ```{r setup, include=FALSE}
@@ -34,7 +36,86 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Basic Behavior over Time
 
-```{r tile-plot, echo=FALSE}
-
+```{r tile-plot, echo=FALSE, message=FALSE, warning=FALSE}
+n_nr_obs <- 30
+vec_behave <- c("eating", "laying", "ruminating", "standing", "walking")
+n_nr_behave <- length(vec_behave)
+tbl_behavior <- tibble::tibble(x = 1:n_nr_obs, y = sample(vec_behave, n_nr_obs, replace = TRUE))
+require(ggplot2)
+p <- ggplot(tbl_behavior, aes(x=x, y=as.factor(y), fill = as.factor(y))) + xlab(NULL) + ylab(NULL)
+p + geom_tile()
 ```
+
+
+## Data Aggregation Over Time
+
+* Summarise duration of behaviors over one day
+* Yields Average time for a certain behavior per day
+* Defines graphical representation of behavior pattern diagram
+
+<!-- Insert geom_line plot of behavior, similarly to Alibaba or Barplot -->
+
+
+## Overlay Phenotypes of Interest
+
+* Phenotypes of interest
+    + Heat
+    + Lameness
+    + Calving
+    + Mastitis
+    + Ketosis
+    + ...
+* Pooled as events where farmer must be alerted
+* Overlay events in behavior pattern diagrams
+* Associate events with behavior pattern diagrams
+
+
+## Aim: Prediction of Events
+
+* Given association of events and cow behavior
+* Aim: Predict future events based on cow behavior pattern
+* Solution
+    + Understand combined data consisting of cow behavior and events as training dataset for a machine learning problem
+    + Use statistical learning model to predict future events
+    
+    
+## Machine/Statistical Learning
+
+* Two categories that are important for us
+    1. Supervised 
+    2. Unsupervised
+    
+* In supervised learning
+    + statistical model is used to understand the relationship between a number of predictor variables (input) and a response variable (output)
+    + statistical model can be used to predict future values of the response given new predictor variables
+* In unsupervised learning, there is no response, but there is just a set of variables, between which relationships are to be uncovered
+
+
+## Statistical Learning Application in Everyday Life
+
+* Face recognition based on pictures
+* Driving assistence system
+* Autonomous driving
+
+
+## Statistical Learning Application in Agriculture
+
+* Mobile applications for recognising plants: e.g. PictureThis 
+* Weed recognition robots
+
+
+## Second Level Algorithm in SESAM
+
+* Use overlayed dataset of cow behavior and events as training sets to predict the relationship between behavior and the events
+* Given new behavior data of cows, new events can be predicted
+* Based on predicted events, alerts can be defined
+
+
+## Conclusions
+
+* Prototype system of inference of phenotypic events based on behavior data works
+* Data quality and density of collected phenotypic events is critical
+* Time resolution for different events must be adjusted
+* Further research is needed to address open questions
+
 

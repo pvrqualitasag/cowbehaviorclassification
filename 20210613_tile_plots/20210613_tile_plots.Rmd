@@ -33,3 +33,11 @@ tbl_behavior <- tibble::tibble(x = 1:n_nr_obs, y = sample(vec_behave, n_nr_obs, 
 tbl_behavior
 ```
 
+A first version of a tile plot could be
+
+```{r}
+require(ggplot2)
+p <- ggplot(tbl_behavior, aes(x=x, y=as.factor(y), fill = as.factor(y))) + xlab(NULL) + ylab(NULL)
+p + geom_tile()
+```
+
