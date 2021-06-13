@@ -1,0 +1,35 @@
+---
+title: "Inferring Cow Phenotypes Based on Sensor Data"
+author: "Peter von Rohr"
+date: "`r Sys.Date()`"
+output: beamer_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Content
+
+1. What are the data 
+2. What can we do with this data
+3. Introduction to Machine Learning
+4. Everyday use cases of machine learning
+5. Machine learning in agriculture
+6. Second level algorithm
+7. Conclusions
+
+
+## Data
+
+* Output of first level classification
+* For every cow over time the basic behavior
+* Basic behavior can be one of 
+    + Eating
+    + Laying
+    + Standing
+    + Walking
+    + Ruminating
+
+
+## Basic Behavior over Time

@@ -1,0 +1,35 @@
+---
+title: "Tile Plots Using ggplot2"
+author: "Peter von Rohr"
+date: "`r Sys.Date()`"
+output: output_format
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Disclaimer
+Tests and experiments with tile plots are shown here.
+
+
+# First Experiment
+A first experiment is taken from Wickham2009 on p. 67-68 which corresponds to 
+
+```{r}
+tbl_tile <- tibble::tibble( x = c(3, 1, 5), y = c(2, 4, 6), label = c("a","b","c"))
+require(ggplot2)
+p <- ggplot(tbl_tile, aes(x, y, label = label)) + xlab(NULL) + ylab(NULL)
+p + geom_tile()
+```
+
+From this we try to expand to a tile plot that shows the different behaviors
+
+```{r}
+n_nr_obs <- 30
+vec_behave <- c("eating", "laying", "ruminating", "standing", "walking")
+n_nr_behave <- length(vec_behave)
+tbl_behavior <- tibble::tibble(x = 1:n_nr_obs, y = sample(vec_behave, n_nr_obs, replace = TRUE))
+tbl_behavior
+```
+
