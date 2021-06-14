@@ -1,7 +1,7 @@
 ---
 title: "Inferring Cow Phenotypes Based on Sensor Data"
-author: "Peter von Rohr"
-date: '`r Sys.Date()`'
+author: "Peter von Rohr and Jessica Gearning"
+date: '2021-06-18'
 output:
   powerpoint_presentation: default
   beamer_presentation: default
@@ -49,11 +49,11 @@ p + geom_tile()
 
 ## Data Aggregation Over Time
 
-* Summarise duration of behaviors over one day
+* Summarize duration of behaviors over one day
 * Yields Average time for a certain behavior per day
 * Defines graphical representation of behavior pattern diagram
 
-<!-- Insert geom_line plot of behavior, similarly to Alibaba or Barplot -->
+<!-- Insert geom_line plot of behavior, similarly to Alibaba or Bar-plot -->
 
 
 ## Overlay Phenotypes of Interest
@@ -85,30 +85,63 @@ p + geom_tile()
     1. Supervised 
     2. Unsupervised
     
+
+## Unsupervised Learning
+
+* In unsupervised learning, there is no response, but there is just a set of variables, between which relationships are to be uncovered
+* Methods used in unsupervised learning are 
+    + Principal Components Analysis (PCA)
+    + Cluster analysis
+    + Neural Networks
+
+
+## Supervised Learning
+
 * In supervised learning
     + statistical model is used to understand the relationship between a number of predictor variables (input) and a response variable (output)
     + statistical model can be used to predict future values of the response given new predictor variables
-* In unsupervised learning, there is no response, but there is just a set of variables, between which relationships are to be uncovered
+* Methods are 
+    + Regression analysis
+    + Linear Discriminant analysis
+    + Tree-Based Methods (Random Forest, ...)
+    + Support Vector Machine (SVM)
 
 
 ## Statistical Learning Application in Everyday Life
 
 * Face recognition based on pictures
-* Driving assistence system
+* Driving assistance system
 * Autonomous driving
 
 
 ## Statistical Learning Application in Agriculture
 
-* Mobile applications for recognising plants: e.g. PictureThis 
+* Mobile applications for recognizing plants: e.g. PictureThis 
 * Weed recognition robots
 
 
 ## Second Level Algorithm in SESAM
 
-* Use overlayed dataset of cow behavior and events as training sets to predict the relationship between behavior and the events
+* Use overlay dataset of cow behavior and events as training sets to predict the relationship between behavior and the events
 * Given new behavior data of cows, new events can be predicted
 * Based on predicted events, alerts can be defined
+
+
+## Details of Second Level Algorithm
+
+* Take an event of interest (heat, calving, mastitis) on a given day
+* Separate the cows in two groups
+    + 1. cows for which event can be observed
+    + 2. cows for which event cannot be observed
+* Check differences between cows of two groups in behavior pattern
+* Ideally behavior patterns show differences between cows of two groups
+
+
+## Results of Second Level Algorithm
+
+* How can differences in behavior patterns be found in a systematic way
+* Use Support Vector Machine to find optimal border between behavior patterns of two groups
+* Use border to predict future occurrences of events based on observed behavior pattern
 
 
 ## Conclusions
