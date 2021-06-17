@@ -43,7 +43,7 @@ tbl_mule_horse
 
 Write the data to a file
 
-```{r}
+```{r, eval=FALSE}
 readr::write_csv(tbl_mule_horse, file = "animal_data.csv")
 ```
 
